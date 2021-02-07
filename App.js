@@ -23,8 +23,6 @@ function StackRegister() {
   )
 }
 
-
-
 export default function App() {
   return (
     <NavigationContainer>
