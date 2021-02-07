@@ -9,7 +9,8 @@ import {
     StyleSheet,
     Dimensions,
     Platform
-} from 'react-native'
+} from 'react-native';
+
 
 //Utils
 import Footer from '../../components/Footer'
@@ -17,11 +18,9 @@ import Header from '../../components/Header'
 import { TopBar } from '../../components/TopBar'
 
 //Greeting pages
-import GrettingPresentation from './GrettingPages/GrettingPresentation'
+import GrettingMeet from './GrettingPages/GrettingMeet'
 import GrettingTutorial from './GrettingPages/GrettingTutorial'
 import GrettingPeople from './GrettingPages/GrettingPeople'
-
-//API
 
 
  //Constants
@@ -33,11 +32,11 @@ export default class Gretting extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { }
+        this.state = {}
     }
 
     componentDidMount(){
-
+        
     }
 
 
@@ -52,10 +51,10 @@ export default class Gretting extends Component {
                     <View style={StyleGretting.full_page}>
                         <Header/>
                         
-                        <GrettingPresentation navigation={this.props.navigation}/>
+                        <GrettingMeet navigation={this.props.navigation}/>
                         <GrettingTutorial/>
-                        <GrettingPeople navigation={this.props.navigation}/>
-
+                        <GrettingPeople navigation={this.props.navigation} team={this.state.team}/>
+                        
                         <Footer/>
                     </View>
                    

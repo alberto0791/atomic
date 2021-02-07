@@ -21,7 +21,7 @@ import {
  const WIDTH = Dimensions.get('window').width;
  const HEIGHT = Dimensions.get('window').height - (Platform.OS === 'ios' ? 40 : 0);
 
- export default class GrettingPresentation extends Component {
+ export default class GrettingMeet extends Component {
 
     constructor(props) {
         super(props);
@@ -35,49 +35,49 @@ import {
 
    render() {
         return(
-            <View style={StyleGrettingOne.sectionOne}>
-                <View style={[ StyleGrettingOne.topTitleSection, StyleGrettingOne.fixed_center ]}>
-                    <Text style={[ StyleGrettingOne.txt_light, StyleGrettingOne.txt_title_small  ]}>
+            <View style={StyleGrettingMeet.sectionOne}>
+                <View style={[ StyleGrettingMeet.topTitleSection, StyleGrettingMeet.fixed_center ]}>
+                    <Text style={[ StyleGrettingMeet.txt_light, StyleGrettingMeet.txt_title_small  ]}>
                         Desarrolla todo
                     </Text>
-                    <Text style={[ StyleGrettingOne.txt_blood, StyleGrettingOne.txt_title_big ]}>
+                    <Text style={[ StyleGrettingMeet.txt_blood, StyleGrettingMeet.txt_title_big ]}>
                         tu POTENCIAL
                     </Text>
-                    <Text style={[ StyleGrettingOne.txt_light, StyleGrettingOne.txt_title_small ]}>
+                    <Text style={[ StyleGrettingMeet.txt_light, StyleGrettingMeet.txt_title_small ]}>
                         dentro del equipo
                     </Text>
-                    <Text style={StyleGrettingOne.txt_title_big}>
-                        <Text style={StyleGrettingOne.txt_blood }>
+                    <Text style={StyleGrettingMeet.txt_title_big}>
+                        <Text style={StyleGrettingMeet.txt_blood }>
                             ATOMIC
                         </Text>
-                        <Text style={ StyleGrettingOne.txt_light }>
+                        <Text style={ StyleGrettingMeet.txt_light }>
                             LABS
                         </Text>
                     </Text>                    
                 </View>
-                <View  style={[ StyleGrettingOne.scrollToDownSection, StyleGrettingOne.fixed_center ]}>
+                <View  style={[ StyleGrettingMeet.scrollToDownSection, StyleGrettingMeet.fixed_center ]}>
                     <TouchableOpacity 
                         onPress={()=> alert('go')} 
-                        style={[StyleGrettingOne.touchToScroll, StyleGrettingOne.fixed_center]}
+                        style={[StyleGrettingMeet.touchToScroll, StyleGrettingMeet.fixed_center]}
                     >
                         <Icon type='font-awesome' name='angle-down' color='#000'/>
                     </TouchableOpacity>
-                    <Text style={[StyleGrettingOne.txt_normal, StyleGrettingOne.txt_light]}>
+                    <Text style={[StyleGrettingMeet.txt_normal, StyleGrettingMeet.txt_light]}>
                         Quiero saber más
                     </Text>
                 </View>
-                <View style={[StyleGrettingOne.imageTopSection, StyleGrettingOne.fixed_center]}>
+                <View style={[StyleGrettingMeet.imageTopSection, StyleGrettingMeet.fixed_center]}>
                     <Image
                         source={require('../../../img/gretting1.png')}
-                        style={StyleGrettingOne.imgTop}
+                        style={StyleGrettingMeet.imgTop}
                     />
                 </View>
-                <View style={[StyleGrettingOne.goToRegisterSection, StyleGrettingOne.fixed_center]}>
+                <View style={[StyleGrettingMeet.goToRegisterSection, StyleGrettingMeet.fixed_center]}>
                     <Button
                         title='¡Quiero ser parte!'
-                        buttonStyle={StyleGrettingOne.btn}
-                        titleStyle={StyleGrettingOne.txt_btn}
-                        onPress={() => this.props.navigation.navigate('DataPhone')}
+                        buttonStyle={StyleGrettingMeet.btn}
+                        titleStyle={StyleGrettingMeet.txt_btn}
+                        onPress={() => this.props.navigation.navigate('SignSuccess')}
                     />
                 </View>
             </View>
@@ -87,7 +87,7 @@ import {
 
 
  
-const StyleGrettingOne = StyleSheet.create({
+const StyleGrettingMeet = StyleSheet.create({
     fixed_center: {
         alignItems: 'center',
         justifyContent: 'center'
@@ -116,7 +116,7 @@ const StyleGrettingOne = StyleSheet.create({
         color:'#fa4d09'
     },
     sectionOne:{
-        height: HEIGHT * 0.9,
+        height: HEIGHT * 0-9,
     },
     topTitleSection: {
         flex: 3
@@ -129,10 +129,10 @@ const StyleGrettingOne = StyleSheet.create({
         width: HEIGHT * 0.050,
         backgroundColor: '#fff',
         borderRadius: HEIGHT * 0.0375,
-        marginBottom: HEIGHT * 0.015
+        marginBottom: HEIGHT * 0.005
     },
     imageTopSection: {
-        flex: 4       
+        height: HEIGHT * 0.5,   
     },
     goToRegisterSection: {
         flex: 1
