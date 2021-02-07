@@ -77,7 +77,7 @@ import {
                         title='¡Quiero ser parte!'
                         buttonStyle={StyleGrettingOne.btn}
                         titleStyle={StyleGrettingOne.txt_btn}
-                        onPress={() => this.props.navigation.navigate('DataAccount')}
+                        onPress={() => this.props.navigation.navigate('DataPhone')}
                     />
                 </View>
             </View>
