@@ -52,5 +52,3 @@ const StyleGretting = StyleSheet.create({
         backgroundColor: '#000'
     }
 })
-
-
