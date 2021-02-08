@@ -8,7 +8,8 @@ export function sendTest( firstname, lastname, cellphone ) {
         firstname : firstname,
         lastname: lastname,
         cellphone: cellphone
-    };  let body = JSON.stringify( details );
+    };  
+    let body = JSON.stringify( details );
     
     return fetch( REQUEST_URL+"/form",{
         method:'POST',
@@ -18,7 +19,7 @@ export function sendTest( firstname, lastname, cellphone ) {
         },
         body: body
     }).then(( response ) => response.json())
-} //Yapsi-Pay transaction confirm
+} //Send user info
 
 
 export function peopleTeam() {

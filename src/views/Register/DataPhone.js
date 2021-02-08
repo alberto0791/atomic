@@ -20,7 +20,7 @@ import NetInfo from "@react-native-community/netinfo";
 import { CommonActions } from '@react-navigation/native';
 
 //API
-import { sendTest } from '../../services/api'
+import { sendTest } from '../../services/Api'
 
 //Utils
 import Footer from '../../components/Footer'
@@ -33,7 +33,6 @@ import { ProgressBar } from '../../components/ProgressBar'
  //Constants
  const WIDTH = Dimensions.get( 'window' ).width;
  const HEIGHT = Dimensions.get( 'window' ).height;
- let INTENTS = 0;
 
  //Class
 export default class DataPhone extends Component {
@@ -44,7 +43,8 @@ export default class DataPhone extends Component {
             firstname: this.props.route.params.name,
             lastname: this.props.route.params.last_name,
             phone: '',
-            error_phone: ''
+            error_phone: '',
+            attempts: 0
          }
     }
 
@@ -65,17 +65,18 @@ export default class DataPhone extends Component {
                 this.state.phone
             )
             .then(( res ) => {
+                this.setState({ attempts: this.state.attempts + 1 })
                 if( res.success ) {
-                    INTENTS = 0;
+                    this.setState({ attempts: 0 })
                     this.props.navigation.navigate( 'SignSuccess' );
-                }else{                    
-                    if( INTENTS == 3 ) {
+                }else{
+                    if( this.state.attempts == 3 ) {                      
                         Alert.alert(
                             "LO SENTIMOS",
                             "No se ha logrado la comunicación con el servidor, te invitamos a intentarlo mas tarde.",
                             [
                                 { 
-                                    text: "VOLVER A INTENTARLO",
+                                    text: "ACEPTAR",
                                     onPress: ()=> this.props.navigation.dispatch(
                                         CommonActions.reset({
                                           index: 1,
@@ -85,24 +86,10 @@ export default class DataPhone extends Component {
                                         })
                                     )
                                 }
-                            ],
-                            { 
-                                cancelable: false 
-                            }
+                            ]
                         );
                     }else {
-                        Alert.alert(
-                            "LO SENTIMOS",
-                            "No se ha logrado la comunicación con el servidor",
-                            [
-                                { 
-                                    text: "VOLVER A INTENTARLO"
-                                }
-                            ],
-                            { 
-                                cancelable: false 
-                            }
-                        );
+                        this._sendInfo();
                     }
                 }
             })
