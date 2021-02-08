@@ -11,13 +11,13 @@ import {
 } from 'react-native'
 
  //Constants
- const HEIGHT = Dimensions.get('window').height;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
  //Class
 export default class Header extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { }
     }
 
@@ -32,7 +32,7 @@ export default class Header extends Component {
             ]}
         >
             <Image
-                style={StyleHeader.img}
+                style={ StyleHeader.img }
                 source={require('../img/top-img.webp')}
             />
         </View>
@@ -45,7 +45,8 @@ export default class Header extends Component {
 
 const StyleHeader = StyleSheet.create({
     container: {
-        height: HEIGHT * 0.1
+        height: HEIGHT * 0.1,
+        marginTop: 40
     },
     fixed_center:{
         alignItems: 'center',

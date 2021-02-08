@@ -1,14 +1,13 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
     View,
     StyleSheet,
     Dimensions,
     Platform,
-    StatusBar,
     Image,
     Text,
     FlatList
@@ -20,45 +19,45 @@ import {
 import Carousel from 'react-native-snap-carousel';
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height - (Platform.OS === 'ios' ? 40 : 0);
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
  const SLIDER_WIDTH = WIDTH * 0.8;
 
  //Class
 export default class GrettingPeople extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { }
     }
 
     Capitalize(str){
         let words = str.split(" ");
         
-        for (let i = 0; i < words.length; i++) {
+        for( let i = 0; i < words.length; i++ ) {
             words[i] = words[i][0].toUpperCase() + words[i].substr(1);
         }
 
         return words.join(" ");
     }
 
-    _renderCarousel({item,index}){
+    _renderCarousel({ item,index }){
         return (
-            <View style={[StyleGrettingPeople.full_page, StyleGrettingPeople.card]} key={index}>
-                <View style={[StyleGrettingPeople.fullTwo_page, StyleGrettingPeople.fixed_center]}>
+            <View style={[ StyleGrettingPeople.full_page, StyleGrettingPeople.card ]} key={ index }>
+                <View style={[ StyleGrettingPeople.fullTwo_page, StyleGrettingPeople.fixed_center ]}>
                     <Avatar
                         size="xlarge"
                         rounded
                         source={{ uri: item.photograph }}
-                        activeOpacity={0.7}
+                        activeOpacity={ 0.7 }
                     />
                 </View>
-                <View style={[StyleGrettingPeople.full_page, StyleGrettingPeople.fixed_center]}>
-                    <Text style={[StyleGrettingPeople.txt_name, StyleGrettingPeople.txt_light]}>
-                            {this.Capitalize(item.name)}
+                <View style={[ StyleGrettingPeople.full_page, StyleGrettingPeople.fixed_center ]}>
+                    <Text style={[ StyleGrettingPeople.txt_name, StyleGrettingPeople.txt_light ]}>
+                            { this.Capitalize(item.name) }
                     </Text>
-                    <Text style={[StyleGrettingPeople.txt_area, StyleGrettingPeople.txt_light]}>
-                        {item.area}
+                    <Text style={[ StyleGrettingPeople.txt_area, StyleGrettingPeople.txt_light ]}>
+                        { item.area }
                     </Text>
                 </View>
             </View>
@@ -66,54 +65,54 @@ export default class GrettingPeople extends Component {
     }
 
     _renderItem = ({ item, index }) => (
-        <View style={[StyleGrettingPeople.carousel_container, StyleGrettingPeople.fixed_center]} key={index}>
+        <View style={[ StyleGrettingPeople.carousel_container, StyleGrettingPeople.fixed_center ]} key={ index }>
             <Carousel
-                layout={"default"}
-                loop={true}
-                ref={ref => this.carousel = ref}
-                data={item.members}
-                sliderWidth={WIDTH * 0.9}
-                itemWidth={SLIDER_WIDTH}
-                renderItem={(itemC, indexC)=>this._renderCarousel(itemC, indexC)}
-                horizontal={true}
+                layout="default"
+                loop={ true }
+                ref={ ref => this.carousel = ref }
+                data={ item.members }
+                sliderWidth={ WIDTH * 0.9 }
+                itemWidth={ SLIDER_WIDTH }
+                renderItem={ ( itemC, indexC )=>this._renderCarousel( itemC, indexC )}
+                horizontal={ true }
             />
         </View>
     );
 
    render() {
        return (
-            <View style={StyleGrettingPeople.fixed_center}>
-                <View style={StyleGrettingPeople.half_device}>
-                    <View style={[StyleGrettingPeople.imageTopSection, StyleGrettingPeople.fixed_center]}>
+            <View style={  StyleGrettingPeople.fixed_center }>
+                <View style={ StyleGrettingPeople.half_device }>
+                    <View style={[ StyleGrettingPeople.imageTopSection, StyleGrettingPeople.fixed_center ]}>
                         <Image
                             source={require('../../../img/people_group.png')}
-                            style={StyleGrettingPeople.imgTop}
+                            style={ StyleGrettingPeople.imgTop }
                         />
                     </View>
-                    <View style={[StyleGrettingPeople.goToRegisterSection, StyleGrettingPeople.fixed_center]}>
+                    <View style={[ StyleGrettingPeople.goToRegisterSection, StyleGrettingPeople.fixed_center ]}>
                         <Button
                             title='¡Quiero ser parte!'
-                            buttonStyle={StyleGrettingPeople.btn}
-                            titleStyle={StyleGrettingPeople.txt_btn}
-                            onPress={() => this.props.navigation.navigate('DataAccount')}
+                            buttonStyle={ StyleGrettingPeople.btn }
+                            titleStyle={ StyleGrettingPeople.txt_btn }
+                            onPress={() => this.props.navigation.navigate( 'DataAccount' )}
                         />
                     </View>
-                    <View style={[StyleGrettingPeople.goToRegisterSection, StyleGrettingPeople.fixed_center]}>
-                        <Text style={StyleGrettingPeople.txt_title_small}>
-                            <Text style={StyleGrettingPeople.txt_light}>
+                    <View style={[ StyleGrettingPeople.goToRegisterSection, StyleGrettingPeople.fixed_center ]}>
+                        <Text style={ StyleGrettingPeople.txt_title_small }>
+                            <Text style={ StyleGrettingPeople.txt_light }>
                                 NUESTRO{' '}
                             </Text>
-                            <Text style={StyleGrettingPeople.txt_blood}>
+                            <Text style={ StyleGrettingPeople.txt_blood }>
                                 EQUIPO
                             </Text>
                         </Text>
                     </View>                    
                 </View>
-                <View style={[StyleGrettingPeople.flatlist_container, StyleGrettingPeople.fixed_center]}>
+                <View style={[ StyleGrettingPeople.flatlist_container, StyleGrettingPeople.fixed_center ]}>
                     <FlatList
-                        horizontal={false}
-                        data={this.props.team}
-                        renderItem={(item, index)=>this._renderItem(item, index)}
+                        horizontal={ false }
+                        data={ this.props.team }
+                        renderItem={( item, index )=>this._renderItem( item, index )}
                     />
                 </View>
                 
@@ -125,12 +124,9 @@ export default class GrettingPeople extends Component {
 }
 
 
-
- 
 const StyleGrettingPeople = StyleSheet.create({
     container: {
-        flexGrow: 1,
-        marginBottom: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight
+        flexGrow: 1
     },
     little_space:{
         padding: WIDTH * 0.05

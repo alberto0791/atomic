@@ -1,10 +1,9 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
-    View,
     ScrollView,
     StyleSheet,
     Dimensions,
@@ -32,21 +31,21 @@ import { renderIf } from '../../utils/Functions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height;
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
  //Class
 export default class Gretting extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { 
             isConnected: true,
             team: []
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         NetInfo.fetch().then(state => {
             this.setState({ isConnected: state.isConnected });
         });
@@ -56,25 +55,25 @@ export default class Gretting extends Component {
         this._fetchData();
     }
 
-    _fetchData(){
+    _fetchData() {
         let ux_team = [],
             front_team = [],
             back_team = [],
             whole_team = [];
-        if(this.state.isConnected){
+        if(this.state.isConnected) {
             peopleTeam()
-            .then((team)=>{
-                if(team){
-                    team.map((member)=>{
-                        switch(member.area){
+            .then(( team )=>{
+                if( team ) {
+                    team.map(( member ) => {
+                        switch( member.area ) {
                             case 'UX Designer':
-                                ux_team.push(member);
+                                ux_team.push( member );
                             break;
                             case 'Front-end developer':
-                                front_team.push(member);
+                                front_team.push( member );
                             break;
                             case 'Back-end developer':
-                                back_team.push(member);
+                                back_team.push( member );
                             break;
                         }
                     })
@@ -109,30 +108,32 @@ export default class Gretting extends Component {
 
    render() {
         return (
+            <SafeAreaView style={ StyleGretting.full_page }>
+                <TopBar/>
                 <ScrollView 
-                    contentContainerStyle={StyleGretting.container} 
-                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={ StyleGretting.container } 
+                    showsVerticalScrollIndicator={ false }
                     keyboardShouldPersistTaps='handled'
                 >
-                    <SafeAreaView style={{flex: 1, backgroundColor: 'pink'}}>
-                        <ImageBackground
-                            source={require('../../img/backOne.png')}
-                            style={StyleGretting.imgBackLLarge}
-                            imageStyle={StyleGretting.imgBack}
-                        >
-                            <Header/>
-                            <GrettingMeet navigation={this.props.navigation}/> 
-                            <GrettingTutorial/>  
-                            {renderIf(this.state.team.length > 0,
-                                <GrettingPeople navigation={this.props.navigation} team={this.state.team}/>
-                            )}
-                            {renderIf(this.state.team.length == 0,
-                                <ActivityIndicator/>
-                            )}                         
-                        </ImageBackground>
-                        <Footer/>
-                    </SafeAreaView>
+                    <ImageBackground
+                        source={ require( '../../img/backOne.png' ) }
+                        style={ StyleGretting.imgBackLLarge }
+                        imageStyle={ StyleGretting.imgBack }
+                    >
+                        <Header/>
+                        <GrettingMeet navigation={ this.props.navigation }/> 
+                        <GrettingTutorial/>  
+                        {renderIf( this.state.team.length > 0,
+                            <GrettingPeople navigation={ this.props.navigation } team={ this.state.team }/>
+                        )}
+                        {renderIf( this.state.team.length == 0,
+                            <ActivityIndicator/>
+                        )}                         
+                    </ImageBackground>
+                    <Footer/>
+                    
                 </ScrollView>
+            </SafeAreaView>
        );
 
    }

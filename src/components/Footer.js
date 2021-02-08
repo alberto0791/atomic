@@ -1,7 +1,7 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
     View,
@@ -12,43 +12,43 @@ import {
 import { Icon } from 'react-native-elements'
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height;
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
  //Class
 export default class Footer extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { }
     }
 
 
    render() {
        return (
-        <View style={StyleFooter.container}>
-            <View style={StyleFooter.row}>
-                <Text style={StyleFooter.txt}>
+        <View style={ StyleFooter.container }>
+            <View style={ StyleFooter.row }>
+                <Text style={ StyleFooter.txt }>
                     2020 Atomic Labs. Todos los derechos reservados.
                 </Text>
             </View>
-            <View style={StyleFooter.row}>
-                <Text style={[StyleFooter.txt, StyleFooter.underline_txt]}>
+            <View style={ StyleFooter.row }>
+                <Text style={[ StyleFooter.txt, StyleFooter.underline_txt ]}>
                     Aviso de privacidad
                 </Text>
             </View>
-            <View style={[StyleFooter.row, StyleFooter.horizontal_row]}>
+            <View style={[ StyleFooter.row, StyleFooter.horizontal_row ]}>
                 <Icon 
                     type='font-awesome' 
                     name='linkedin' 
                     color='#fff' 
-                    style={StyleFooter.space_socialMedia}
+                    style={ StyleFooter.space_socialMedia }
                 />
                 <Icon 
                     type='font-awesome' 
                     name='twitter' 
                     color='#fff' 
-                    style={StyleFooter.space_socialMedia}
+                    style={ StyleFooter.space_socialMedia }
                 />
             </View>
         </View>

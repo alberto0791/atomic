@@ -1,7 +1,7 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
     View,
@@ -10,8 +10,7 @@ import {
     Platform,
     Text,
     Image,
-    TouchableOpacity,
-    ImageBackground
+    TouchableOpacity
 } from 'react-native'
 import { 
     Button, 
@@ -19,24 +18,19 @@ import {
 } from 'react-native-elements';
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height;
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
  export default class GrettingMeet extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { }
     }
-
-    componentDidMount(){
-
-    }
-
-
+    
    render() {
         return(
-            <View style={StyleGrettingMeet.sectionOne}>
+            <View style={ StyleGrettingMeet.sectionOne }>
                     
                 <View style={[ StyleGrettingMeet.topTitleSection, StyleGrettingMeet.fixed_center ]}>
                     <Text style={[ StyleGrettingMeet.txt_light, StyleGrettingMeet.txt_title_small  ]}>
@@ -48,8 +42,8 @@ import {
                     <Text style={[ StyleGrettingMeet.txt_light, StyleGrettingMeet.txt_title_small ]}>
                         dentro del equipo
                     </Text>
-                    <Text style={StyleGrettingMeet.txt_title_big}>
-                        <Text style={StyleGrettingMeet.txt_blood }>
+                    <Text style={ StyleGrettingMeet.txt_title_big }>
+                        <Text style={ StyleGrettingMeet.txt_blood }>
                             ATOMIC
                         </Text>
                         <Text style={ StyleGrettingMeet.txt_light }>
@@ -60,25 +54,25 @@ import {
                 <View  style={[ StyleGrettingMeet.scrollToDownSection, StyleGrettingMeet.fixed_center ]}>
                     <TouchableOpacity 
                         onPress={()=> alert('go')} 
-                        style={[StyleGrettingMeet.touchToScroll, StyleGrettingMeet.fixed_center]}
+                        style={[ StyleGrettingMeet.touchToScroll, StyleGrettingMeet.fixed_center ]}
                     >
                         <Icon type='font-awesome' name='angle-down' color='#000'/>
                     </TouchableOpacity>
-                    <Text style={[StyleGrettingMeet.txt_normal, StyleGrettingMeet.txt_light]}>
+                    <Text style={[ StyleGrettingMeet.txt_normal, StyleGrettingMeet.txt_light ]}>
                         Quiero saber más
                     </Text>
                 </View>
-                <View style={[StyleGrettingMeet.imageTopSection, StyleGrettingMeet.fixed_center]}>
+                <View style={[ StyleGrettingMeet.imageTopSection, StyleGrettingMeet.fixed_center ]}>
                     <Image
                         source={require('../../../img/gretting1.png')}
-                        style={StyleGrettingMeet.imgTop}
+                        style={ StyleGrettingMeet.imgTop }
                     />
                 </View>
-                <View style={[StyleGrettingMeet.goToRegisterSection, StyleGrettingMeet.fixed_center]}>
+                <View style={[ StyleGrettingMeet.goToRegisterSection, StyleGrettingMeet.fixed_center ]}>
                     <Button
                         title='¡Quiero ser parte!'
-                        buttonStyle={StyleGrettingMeet.btn}
-                        titleStyle={StyleGrettingMeet.txt_btn}
+                        buttonStyle={ StyleGrettingMeet.btn }
+                        titleStyle={ StyleGrettingMeet.txt_btn }
                         onPress={() => this.props.navigation.navigate('DataAccount')}
                     />
                 </View>

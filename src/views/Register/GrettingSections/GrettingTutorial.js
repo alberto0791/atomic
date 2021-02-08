@@ -8,7 +8,8 @@ import {
     StyleSheet,
     Dimensions,
     Platform,
-    Text,Image
+    Text,
+    Image
 } from 'react-native'
 import 
     Carousel, 
@@ -17,15 +18,15 @@ from 'react-native-snap-carousel';
 import { Icon } from 'react-native-elements'
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height - (Platform.OS === 'ios' ? 40 : 0);
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height
  const SLIDER_WIDTH = WIDTH * 0.9;
 
  //Class
 export default class GrettingTutorial extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = {
             activeIndex:0,
             carouselItems: [
@@ -64,12 +65,12 @@ export default class GrettingTutorial extends Component {
          }
     }
 
-    _renderTxt(txt){
-        return txt.map((e, i) => {
+    _renderTxt( txt ){
+        return txt.map(( e, i ) => {
             return (
-                <View style={[StyleGrettingTutorial.tutorial_row, StyleGrettingTutorial.litle_space]} key={i}>
+                <View style={[ StyleGrettingTut.tutorial_row, StyleGrettingTut.litle_space ]} key={ i }>
                     <Icon type='font-awesome' name='circle' size={10} color='#fff'/>
-                    <Text style={[StyleGrettingTutorial.txt_light, StyleGrettingTutorial.txt_normal]}>
+                    <Text style={[ StyleGrettingTut.txt_light, StyleGrettingTut.txt_normal ]}>
                         {'    ' + e.message}
                     </Text>
                 </View>
@@ -79,29 +80,29 @@ export default class GrettingTutorial extends Component {
 
     _renderItem({item,index}){
         return (
-          <View style={[StyleGrettingTutorial.full_page, StyleGrettingTutorial.backPageTutorial]} key={index}>
-              <View style={[StyleGrettingTutorial.full_page, StyleGrettingTutorial.fixed_center]}>
+            <View style={[ StyleGrettingTut.full_page, StyleGrettingTut.backPageTutorial ]} key={ index }>
+                <View style={[ StyleGrettingTut.full_page, StyleGrettingTut.fixed_center ]}>
                     <Image
-                        source={item.img}
-                        style={StyleGrettingTutorial.tutorial_img}
+                        source={ item.img }
+                        style={ StyleGrettingTut.tutorial_img }
                     />
-                    <View style={[StyleGrettingTutorial.fixed_center, StyleGrettingTutorial.tutorial_row]}>
-                        <View style={[StyleGrettingTutorial.line_division, StyleGrettingTutorial.large_line_division]}/>
-                        <View style={[StyleGrettingTutorial.line_division, StyleGrettingTutorial.small_line_division]}/>
-                        <View style={[StyleGrettingTutorial.line_division, StyleGrettingTutorial.large_line_division]}/>
+                    <View style={[ StyleGrettingTut.fixed_center,  StyleGrettingTut.tutorial_row ]}>
+                        <View style={[ StyleGrettingTut.line_division, StyleGrettingTut.large_line_division ]}/>
+                        <View style={[ StyleGrettingTut.line_division, StyleGrettingTut.small_line_division ]}/>
+                        <View style={[ StyleGrettingTut.line_division, StyleGrettingTut.large_line_division ]}/>
                     </View>
-              </View>              
-              <View style={StyleGrettingTutorial.two_page}>
-                    <View style={[StyleGrettingTutorial.litle_space, StyleGrettingTutorial.fixed_center]}>
-                        <Text style={[StyleGrettingTutorial.txt_light, StyleGrettingTutorial.txt_title_small]}>
+                </View>              
+                <View style={ StyleGrettingTut.two_page }>
+                    <View style={[ StyleGrettingTut.litle_space, StyleGrettingTut.fixed_center ]}>
+                        <Text style={[ StyleGrettingTut.txt_light, StyleGrettingTut.txt_title_small ]}>
                             {item.title}
                         </Text>
                     </View>                    
-                    <View style={[StyleGrettingTutorial.full_page, StyleGrettingTutorial.big_space]}>
-                        {this._renderTxt(item.txt)}
+                    <View style={[ StyleGrettingTut.full_page, StyleGrettingTut.big_space ]}>
+                        { this._renderTxt(item.txt) }
                     </View>
-              </View>
-          </View>
+                </View>
+            </View>
 
         )
     }
@@ -109,12 +110,12 @@ export default class GrettingTutorial extends Component {
     get paginationItem () {
         return (
             <Pagination
-                dotsLength={this.state.carouselItems.length}
-                activeDotIndex={this.state.activeIndex}
-                containerStyle={StyleGrettingTutorial.backPagination}
-                dotStyle={StyleGrettingTutorial.dotAppearance}
-                inactiveDotOpacity={0.4}
-                inactiveDotScale={0.6}
+                dotsLength={ this.state.carouselItems.length }
+                activeDotIndex={ this.state.activeIndex }
+                containerStyle={ StyleGrettingTut.backPagination }
+                dotStyle={ StyleGrettingTut.dotAppearance }
+                inactiveDotOpacity={ 0.4 }
+                inactiveDotScale={ 0.6 }
             />
         );
     }
@@ -123,32 +124,32 @@ export default class GrettingTutorial extends Component {
 
    render() {
        return (
-            <View style={StyleGrettingTutorial.sectionTwo}>
-                <View style={[StyleGrettingTutorial.TitleSection, StyleGrettingTutorial.fixed_center]}>
-                    <Text style={StyleGrettingTutorial.txt_title_small}>
-                        <Text style={StyleGrettingTutorial.txt_light}>SOMOS EL BRAZO</Text>{'\n'}
-                        <Text style={StyleGrettingTutorial.txt_light}>DERECHO </Text>
-                        <Text style={StyleGrettingTutorial.txt_blood}>DE LA</Text>{'\n'}
-                        <Text style={StyleGrettingTutorial.txt_blood}>TECNOLOGÍA</Text>
+            <View style={StyleGrettingTut.sectionTwo}>
+                <View style={[StyleGrettingTut.TitleSection, StyleGrettingTut.fixed_center]}>
+                    <Text style={StyleGrettingTut.txt_title_small}>
+                        <Text style={StyleGrettingTut.txt_light}>SOMOS EL BRAZO</Text>{'\n'}
+                        <Text style={StyleGrettingTut.txt_light}>DERECHO </Text>
+                        <Text style={StyleGrettingTut.txt_blood}>DE LA</Text>{'\n'}
+                        <Text style={StyleGrettingTut.txt_blood}>TECNOLOGÍA</Text>
                     </Text>
                 </View>
-                <View style={[StyleGrettingTutorial.carouselSection, StyleGrettingTutorial.fixed_center]}>
+                <View style={[ StyleGrettingTut.carouselSection, StyleGrettingTut.fixed_center ]}>
                     <Carousel
-                        layout={"tinder"}
-                        ref={ref => this.carousel = ref}
-                        data={this.state.carouselItems}
-                        sliderWidth={SLIDER_WIDTH}
-                        itemWidth={SLIDER_WIDTH}
-                        renderItem={this._renderItem.bind(this)}
-                        onSnapToItem = { index => this.setState({activeIndex:index}) } 
+                        layout={ "tinder" }
+                        ref={ ref => this.carousel = ref }
+                        data={ this.state.carouselItems }
+                        sliderWidth={ SLIDER_WIDTH }
+                        itemWidth={ SLIDER_WIDTH }
+                        renderItem={ this._renderItem.bind(this) }
+                        onSnapToItem = { index => this.setState({ activeIndex:index }) } 
                     />
                      { this.paginationItem }
                     </View>
-                <View style={[StyleGrettingTutorial.TitleSection, StyleGrettingTutorial.fixed_center]}>
-                    <Text style={StyleGrettingTutorial.txt_title_small}>
-                        <Text style={StyleGrettingTutorial.txt_light}>¡TE ENCANTARÁ</Text>{'\n'}
-                        <Text style={StyleGrettingTutorial.txt_blood}>TRABAJAR CON</Text>{'\n'}
-                        <Text style={StyleGrettingTutorial.txt_blood}>NOSOTROS!</Text>
+                <View style={[StyleGrettingTut.TitleSection, StyleGrettingTut.fixed_center ]}>
+                    <Text style={ StyleGrettingTut.txt_title_small }>
+                        <Text style={ StyleGrettingTut.txt_light }>¡TE ENCANTARÁ</Text>{'\n'}
+                        <Text style={ StyleGrettingTut.txt_blood }>TRABAJAR CON</Text>{'\n'}
+                        <Text style={ StyleGrettingTut.txt_blood }>NOSOTROS!</Text>
                     </Text>
                 </View>
             </View>
@@ -157,7 +158,7 @@ export default class GrettingTutorial extends Component {
    }
 }
 
-const StyleGrettingTutorial = StyleSheet.create({
+const StyleGrettingTut = StyleSheet.create({
     full_page: {
         flex: 1
     },
