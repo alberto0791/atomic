@@ -81,7 +81,7 @@ export default class GrettingPeople extends Component {
 
    render() {
        return (
-            <View style={  StyleGrettingPeople.fixed_center }>
+            <View style={StyleGrettingPeople.full_page}>
                 <View style={ StyleGrettingPeople.half_device }>
                     <View style={[ StyleGrettingPeople.imageTopSection, StyleGrettingPeople.fixed_center ]}>
                         <Image
