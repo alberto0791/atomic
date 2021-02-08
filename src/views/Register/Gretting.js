@@ -8,8 +8,9 @@ import {
     ScrollView,
     StyleSheet,
     Dimensions,
-    Platform,
-    ActivityIndicator
+    ActivityIndicator,
+    Alert,
+    ImageBackground
 } from 'react-native';
 import NetInfo from "@react-native-community/netinfo";
 
@@ -19,13 +20,12 @@ import Header from '../../components/Header'
 import { TopBar } from '../../components/TopBar'
 
 //Greeting pages
-import GrettingMeet from './GrettingPages/GrettingMeet'
-import GrettingTutorial from './GrettingPages/GrettingTutorial'
-import GrettingPeople from './GrettingPages/GrettingPeople'
+import GrettingMeet from './GrettingSections/GrettingMeet'
+import GrettingTutorial from './GrettingSections/GrettingTutorial'
+import GrettingPeople from './GrettingSections/GrettingPeople'
 
 //API
 import { peopleTeam } from '../../serivces/api'
-import { tan } from 'react-native-reanimated';
 
 //Utils
 import { renderIf } from '../../utils/Functions';
@@ -87,10 +87,9 @@ export default class Gretting extends Component {
                         team: whole_team
                     })
                 }
-
             })
             .catch((e)=>{
-                //
+                //TODO prepare exeptions management
             })
         }else{
             Alert.alert(
@@ -108,51 +107,56 @@ export default class Gretting extends Component {
         }
     }
 
-
    render() {
-       return (
-            <SafeAreaView style={StyleGretting.full_page}>
-                <TopBar/>
+        return (
                 <ScrollView 
                     contentContainerStyle={StyleGretting.container} 
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps='handled'
                 >
-                    <View style={StyleGretting.full_page}>
-                        <Header/>
-                        
-                        <GrettingMeet navigation={this.props.navigation}/>
-
-                        <GrettingTutorial/>
-
-                        {renderIf(this.state.team.length > 0,
-                            <GrettingPeople navigation={this.props.navigation} team={this.state.team}/>
-                        )}
-                        {renderIf(this.state.team.length == 0,
-                            <ActivityIndicator/>
-                        )}
-                        
+                    <SafeAreaView style={{flex: 1, backgroundColor: 'pink'}}>
+                        <ImageBackground
+                            source={require('../../img/backOne.png')}
+                            style={StyleGretting.imgBackLLarge}
+                            imageStyle={StyleGretting.imgBack}
+                        >
+                            <Header/>
+                            <GrettingMeet navigation={this.props.navigation}/> 
+                            <GrettingTutorial/>  
+                            {renderIf(this.state.team.length > 0,
+                                <GrettingPeople navigation={this.props.navigation} team={this.state.team}/>
+                            )}
+                            {renderIf(this.state.team.length == 0,
+                                <ActivityIndicator/>
+                            )}                         
+                        </ImageBackground>
                         <Footer/>
-                    </View>
-                   
+                    </SafeAreaView>
                 </ScrollView>
-                
-           </SafeAreaView>
        );
 
    }
 }
 
 
-
- 
 const StyleGretting = StyleSheet.create({
     container: {
-        flexGrow: 1
+        flexGrow: 1,
     },
     full_page:{
-        flex: 1,
-        backgroundColor: '#000'
+        flex: 1
+    },
+    imgBackLLarge: {
+    },
+    imgBack: {
+        resizeMode:'cover', 
+        height: '100%',
+        transform: [
+            { scaleX: 1 }, 
+            { scaleY: 1.1 }, 
+            { translateX: 0 }, 
+            { rotateY: '180deg' },
+        ]
     }
 })
 

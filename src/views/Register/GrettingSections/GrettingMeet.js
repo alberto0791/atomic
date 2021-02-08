@@ -10,7 +10,8 @@ import {
     Platform,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    ImageBackground
 } from 'react-native'
 import { 
     Button, 
@@ -19,7 +20,7 @@ import {
 
  //Constants
  const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height - (Platform.OS === 'ios' ? 40 : 0);
+ const HEIGHT = Dimensions.get('window').height;
 
  export default class GrettingMeet extends Component {
 
@@ -36,6 +37,7 @@ import {
    render() {
         return(
             <View style={StyleGrettingMeet.sectionOne}>
+                    
                 <View style={[ StyleGrettingMeet.topTitleSection, StyleGrettingMeet.fixed_center ]}>
                     <Text style={[ StyleGrettingMeet.txt_light, StyleGrettingMeet.txt_title_small  ]}>
                         Desarrolla todo
@@ -116,7 +118,7 @@ const StyleGrettingMeet = StyleSheet.create({
         color:'#fa4d09'
     },
     sectionOne:{
-        height: HEIGHT * 0-9,
+        height: HEIGHT * 0.9,
     },
     topTitleSection: {
         flex: 3
@@ -146,7 +148,8 @@ const StyleGrettingMeet = StyleSheet.create({
     imgTop: {
         resizeMode: 'contain',
         height: '85%'
-    }
+    },
+    
 })
 
 

@@ -11,7 +11,8 @@ import {
     Platform,
     ImageBackground,
     Text,
-    Image
+    Image,
+    SafeAreaView
 } from 'react-native'
 
 //Utils
@@ -41,7 +42,7 @@ export default class SignSuccess extends Component {
 
    render() {
        return (
-            <View style={StyleSignSuccess.container}>
+            <SafeAreaView style={StyleSignSuccess.full_page}>
                 <TopBar/>
                 <ScrollView 
                     contentContainerStyle={StyleSignSuccess.container} 
@@ -85,7 +86,7 @@ export default class SignSuccess extends Component {
                     </ImageBackground>
                     <Footer/>
                 </ScrollView>
-           </View>
+           </SafeAreaView>
        );
 
    }

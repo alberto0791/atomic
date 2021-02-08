@@ -4,10 +4,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 //Views
-import Gretting from './src/Register/Gretting';
-import DataAccount from './src/Register/DataAccount';
-import DataPhone from './src/Register/DataPhone';
-import SignSuccess from './src/Register/SignSuccess';
+import Gretting from './src/views/Register/Gretting';
+import DataAccount from './src/views/Register/DataAccount';
+import DataPhone from './src/views/Register/DataPhone';
+import SignSuccess from './src/views/Register/SignSuccess';
 
 
 const Stack = createStackNavigator();

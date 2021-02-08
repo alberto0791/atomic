@@ -22,11 +22,8 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import { TopBar } from '../../components/TopBar'
 
-//API
-
 //Components
 import { ProgressBar } from '../../components/ProgressBar'
-
 
  //Constants
  const WIDTH = Dimensions.get('window').width;
@@ -43,10 +40,6 @@ export default class DataAccount extends Component {
             last_name: '',
             error_name: ''
         }
-    }
-
-    componentDidMount(){
-
     }
 
     _checkFileds = () => {
@@ -76,17 +69,17 @@ export default class DataAccount extends Component {
                         imageStyle={StyleDataAccount.imgBack}
                     >
                         <Header/>
-                        <View style={[ StyleDataAccount.topTitleSection ]}>
+                        <View style={[ StyleDataAccount.little_spaceV ]}>
                             <ProgressBar fill={1}/>
                             <View style={[StyleDataAccount.row, StyleDataAccount.little_spaceV]}>
-                                <View style={[{width: WIDTH * 0.2}, StyleDataAccount.toLeft]}>
+                                <View style={[StyleDataAccount.full_page, StyleDataAccount.toLeft]}>
                                     <View style={[StyleDataAccount.circle, StyleDataAccount.fixed_center]}>
                                         <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_letter]}>
                                             1
                                         </Text>
                                     </View>
                                 </View>
-                                <View style={[{width: WIDTH * 0.7}, StyleDataAccount.fixed_center]}>
+                                <View style={[StyleDataAccount.fullThree_page, StyleDataAccount.fixed_center]}>
                                     <Text style={StyleDataAccount.txt_letter}>
                                         <Text style={StyleDataAccount.txt_light}>
                                             TE QUEREMOS {'\n'}
@@ -159,7 +152,7 @@ export default class DataAccount extends Component {
                                     buttonStyle={StyleDataAccount.btn}
                                     onPress={()=> this._checkFileds()}
                                     disabledStyle={StyleDataAccount.disabled_btn}
-                                    disabled={this.state.name == '' && this.state.last_name == ''}
+                                    disabled={this.state.name == '' || this.state.last_name == ''}
                                 />
                             </View>
                         </View>
@@ -243,8 +236,8 @@ const StyleDataAccount = StyleSheet.create({
 
     //Number
     circle: {
-        width: HEIGHT * 0.05, 
-        height: HEIGHT * 0.05, 
+        width: HEIGHT * 0.06, 
+        height: HEIGHT * 0.06, 
         borderWidth: 2, 
         borderRadius: HEIGHT * 0.05,
         borderColor:'#fa4d09',

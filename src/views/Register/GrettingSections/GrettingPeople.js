@@ -95,7 +95,7 @@ export default class GrettingPeople extends Component {
                             title='¡Quiero ser parte!'
                             buttonStyle={StyleGrettingPeople.btn}
                             titleStyle={StyleGrettingPeople.txt_btn}
-                            onPress={() => this.props.navigation.navigate('DataPhone')}
+                            onPress={() => this.props.navigation.navigate('DataAccount')}
                         />
                     </View>
                     <View style={[StyleGrettingPeople.goToRegisterSection, StyleGrettingPeople.fixed_center]}>
