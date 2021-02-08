@@ -17,6 +17,7 @@ import {
 } from 'react-native'
 import { Input, Button } from 'react-native-elements'
 import NetInfo from "@react-native-community/netinfo";
+import { CommonActions } from '@react-navigation/native';
 
 //API
 import { sendTest } from '../../serivces/api'
@@ -69,15 +70,33 @@ export default class DataPhone extends Component {
                     this.props.navigation.navigate( 'SignSuccess' );
                 }else{                    
                     if( INTENTS == 3 ) {
-                        this.props.navigation.navigate( 'SignSuccess' );
+                        Alert.alert(
+                            "LO SENTIMOS",
+                            "No se ha logrado la comunicación con el servidor, te invitamos a intentarlo mas tarde.",
+                            [
+                                { 
+                                    text: "VOLVER A INTENTARLO",
+                                    onPress: ()=> this.props.navigation.dispatch(
+                                        CommonActions.reset({
+                                          index: 1,
+                                          routes: [
+                                            { name: 'Gretting' },
+                                          ],
+                                        })
+                                    )
+                                }
+                            ],
+                            { 
+                                cancelable: false 
+                            }
+                        );
                     }else {
                         Alert.alert(
                             "LO SENTIMOS",
                             "No se ha logrado la comunicación con el servidor",
                             [
                                 { 
-                                    text: "VOLVER A INTENTARLO",
-                                    onPress: ()=> this._sendInfo()
+                                    text: "VOLVER A INTENTARLO"
                                 }
                             ],
                             { 

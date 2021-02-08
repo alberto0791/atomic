@@ -91,8 +91,7 @@ const StyleSignSuccess = StyleSheet.create({
         paddingHorizontal: WIDTH * 0.025
     },
     full_page:{
-        flex: 1,
-        backgroundColor: '#000'
+        flex: 1
     },
     txt_normal: {
         fontSize: 16

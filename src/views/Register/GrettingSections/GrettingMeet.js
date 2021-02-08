@@ -53,7 +53,7 @@ import {
                 </View>
                 <View  style={[ StyleGrettingMeet.scrollToDownSection, StyleGrettingMeet.fixed_center ]}>
                     <TouchableOpacity 
-                        onPress={()=> alert('go')} 
+                        onPress={()=> this.props.scrollToIndex()} 
                         style={[ StyleGrettingMeet.touchToScroll, StyleGrettingMeet.fixed_center ]}
                     >
                         <Icon type='font-awesome' name='angle-down' color='#000'/>
