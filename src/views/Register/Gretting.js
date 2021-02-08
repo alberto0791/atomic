@@ -31,14 +31,15 @@ import { renderIf } from '../../utils/Functions';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
  //Constants
- const WIDTH = Dimensions.get( 'window' ).width;
  const HEIGHT = Dimensions.get( 'window' ).height;
+ const HEADER_SIZE = 40;
 
  //Class
 export default class Gretting extends Component {
 
     constructor( props ) {
         super( props );
+        this.Marker = React.createRef();
         this.state = { 
             isConnected: true,
             team: []
@@ -106,6 +107,10 @@ export default class Gretting extends Component {
         }
     }
 
+    scrollToRow() {
+        this._scrollView.scrollTo({ y: HEIGHT + HEADER_SIZE });
+    }
+
    render() {
         return (
             <SafeAreaView style={ StyleGretting.full_page }>
@@ -114,6 +119,7 @@ export default class Gretting extends Component {
                     contentContainerStyle={ StyleGretting.container } 
                     showsVerticalScrollIndicator={ false }
                     keyboardShouldPersistTaps='handled'
+                    ref={view => this._scrollView = view}
                 >
                     <ImageBackground
                         source={ require( '../../img/backOne.png' ) }
@@ -121,8 +127,11 @@ export default class Gretting extends Component {
                         imageStyle={ StyleGretting.imgBack }
                     >
                         <Header/>
-                        <GrettingMeet navigation={ this.props.navigation }/> 
-                        <GrettingTutorial/>  
+                        <GrettingMeet 
+                            navigation={ this.props.navigation } 
+                            scrollToIndex={ ()=> this.scrollToRow() }
+                        /> 
+                        <GrettingTutorial ref={this.Marker}/>  
                         {renderIf( this.state.team.length > 0,
                             <GrettingPeople navigation={ this.props.navigation } team={ this.state.team }/>
                         )}
@@ -160,5 +169,4 @@ const StyleGretting = StyleSheet.create({
         ]
     }
 })
-
 
