@@ -13,44 +13,42 @@ import { renderIf } from '../utils/Functions'
 
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height;
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
- export function Number(props) {
-     if(props.side == 'left') {
+ export function Number( props ) {
+     if( props.side == 'left' ) {
         return(
             <View 
                 style={[
                     StyleProgressBar.circle, 
-                    StyleProgressBar.fixed_center, 
-                    { 
-                        borderColor: props.fill.fill == 1 ? '#fa4d09' : 'rgba(255, 255, 255, 0.5)',
-                        backgroundColor: props.fill.fill == 2 ? '#fa4d09' : 'transparent' 
-                    }
+                    StyleProgressBar.fixed_center,
+                    StyleProgressBar.border_blood,
+                    props.fill.fill == 2 ? StyleProgressBar.back_blood : StyleProgressBar.back_none
                 ]}
             >
                 {renderIf(props.fill.fill == 2,
-                    <Icon tipe='font-awesome' name='check' size={HEIGHT * 0.05} color='#fff'/>
+                    <Icon tipe='font-awesome' name='check' size={ HEIGHT * 0.035 } color='#fff'/>
                 )}
                 {renderIf(props.fill.fill != 2,
-                    <Text style={[StyleProgressBar.txt, {color: '#fa4d09'}]}>1</Text>
+                    <Text style={[ StyleProgressBar.txt, StyleProgressBar.blood_txt ]}>1</Text>
                 )}
                 
             </View>
         );
-     }else if(props.side == 'right'){
+     }else if( props.side == 'right' ) {
         return(
             <View 
                 style={[
                     StyleProgressBar.circle, 
                     StyleProgressBar.fixed_center, 
-                    { borderColor: props.fill.fill == 1 ? 'rgba(255, 255, 255, 0.5)' : '#fa4d09' }
-                    ]}
+                    props.fill.fill == 1 ? StyleProgressBar.border_light : StyleProgressBar.border_blood
+                ]}
             >
                 <Text 
                     style={[
                         StyleProgressBar.txt,
-                        {color: props.fill.fill == 1 ? 'rgba(255, 255, 255, 0.5)' : '#fa4d09'}
+                        props.fill.fill == 1 ? StyleProgressBar.light_txt : StyleProgressBar.blood_txt
                     ]}
                 >
                     2
@@ -63,18 +61,17 @@ import { renderIf } from '../utils/Functions'
  }
 
  //Class
-export function ProgressBar(props) {
-    console.log(props)
+export function ProgressBar( props ) {
     return (
-        <View style={StyleProgressBar.little_spaceV}>
-            <View style={StyleProgressBar.whole_bar_steps}>
+        <View style={ StyleProgressBar.little_spaceV }>
+            <View style={ StyleProgressBar.whole_bar_steps }>
                 <View 
                     style={[
                         StyleProgressBar.full_page,
                         StyleProgressBar.fixed_center
                     ]}
                 >
-                    <Number side='left' fill={props}/>
+                    <Number side='left' fill={ props }/>
                 </View>
                 <View 
                     style={[
@@ -82,22 +79,22 @@ export function ProgressBar(props) {
                         StyleProgressBar.fixed_center
                     ]}
                 >
-                    <Number side='right' fill={props}/>
+                    <Number side='right' fill={ props }/>
                 </View>
             </View>
-            <View style={StyleProgressBar.whole_bar}>
+            <View style={ StyleProgressBar.whole_bar }>
                 <View 
                     style={[
                         StyleProgressBar.left_bar, 
                         StyleProgressBar.full_page,
-                        { backgroundColor: '#fa4d09' }
+                        StyleProgressBar.back_blood
                     ]}
                 />
                 <View 
                     style={[
                         StyleProgressBar.full_page, 
                         StyleProgressBar.right_bar,
-                        { backgroundColor: props.fill == 2 ? '#fa4d09' : '#fff' }
+                        props.fill == 2 ? StyleProgressBar.back_blood : StyleProgressBar.back_light
                     ]}
                 />
             </View>
@@ -140,6 +137,27 @@ const StyleProgressBar = StyleSheet.create({
     txt: {
         fontSize: HEIGHT * 0.025
     },
+    blood_txt: {
+        color: '#fa4d09'
+    },
+    light_txt: {
+        color: 'rgba(255, 255, 255, 0.5)'
+    },
+    border_blood: {
+        borderColor: '#fa4d09'
+    },
+    border_light: {
+        borderColor: 'rgba(255, 255, 255, 0.5)'
+    },
+    back_blood:{
+        backgroundColor: '#fa4d09'
+    },
+    back_light:{
+        backgroundColor: '#fff'
+    },
+    back_none:{
+        backgroundColor: 'transparent'
+    },
 
     //Number
     circle: {
@@ -147,7 +165,7 @@ const StyleProgressBar = StyleSheet.create({
         height: HEIGHT * 0.05, 
         borderWidth: 2, 
         borderRadius: HEIGHT * 0.075        
-    }
+    },
 })
 
 

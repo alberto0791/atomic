@@ -1,7 +1,7 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
     View,
@@ -30,15 +30,15 @@ import { TopBar } from '../../components/TopBar'
 import { ProgressBar } from '../../components/ProgressBar'
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height;
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
  let INTENTS = 0;
 
  //Class
 export default class DataPhone extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { 
             firstname: this.props.route.params.name,
             lastname: this.props.route.params.last_name,
@@ -48,7 +48,6 @@ export default class DataPhone extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props.route);
         NetInfo.fetch().then(state => {
             this.setState({ isConnected: state.isConnected });
         });
@@ -57,119 +56,110 @@ export default class DataPhone extends Component {
         });
     }
 
-    _checkPhone = () => {
-        if(Number.isInteger( parseInt(this.state.phone))){
-            if(this.state.isConnected){
-                this._sendData();
-            }else{
-                Alert.alert(
-                    "ADVERTENCIA",
-                    "Revisa tu conexión a internet",
-                    [
-                        { 
-                            text: "OK" 
-                        }
-                    ],
-                    { 
-                        cancelable: false 
-                    }
-                );
-            }
-        }else{
-            this.setState({
-                error_phone: 'Numero de teléfono inválido'
-            })
-        }
-    }
-
-    _sendData(){
-        sendTest(
-            this.state.firstname,
-            this.state.lastname,
-            this.state.phone
-        )
-        .then((res)=>{
-            if(res.success){
-                INTENTS = 0;
-                this.props.navigation.navigate('SignSuccess');
-            }else{                    
-                if(INTENTS == 3) {
-                    this.props.navigation.navigate('SignSuccess');
-                }else{
-                    Alert.alert(
-                        "LO SENTIMOS",
-                        "No se ha logrado la comunicación con el servidor",
-                        [
+    _sendInfo = () => {
+        if( this.state.isConnected ) {
+            sendTest(
+                this.state.firstname,
+                this.state.lastname,
+                this.state.phone
+            )
+            .then(( res ) => {
+                if( res.success ) {
+                    INTENTS = 0;
+                    this.props.navigation.navigate( 'SignSuccess' );
+                }else{                    
+                    if( INTENTS == 3 ) {
+                        this.props.navigation.navigate( 'SignSuccess' );
+                    }else {
+                        Alert.alert(
+                            "LO SENTIMOS",
+                            "No se ha logrado la comunicación con el servidor",
+                            [
+                                { 
+                                    text: "VOLVER A INTENTARLO",
+                                    onPress: ()=> this._sendInfo()
+                                }
+                            ],
                             { 
-                                text: "VOLVER A INTENTARLO",
-                                onPress: ()=> this._sendData()
+                                cancelable: false 
                             }
-                        ],
-                        { 
-                            cancelable: false 
-                        }
-                    );
+                        );
+                    }
                 }
-            }
-        })
-        .catch((e)=>{
-            //TODO prepare exeptions management
-        })
+            })
+            .catch(( e ) => {
+                //TODO prepare exeptions management
+            })
+        }else {
+            Alert.alert(
+                "ADVERTENCIA",
+                "Revisa tu conexión a internet",
+                [
+                    { 
+                        text: "OK" 
+                    }
+                ],
+                { 
+                    cancelable: false 
+                }
+            );
+        }
     }
 
 
    render() {
        return (
-            <SafeAreaView style={StyleDataPhone.full_page}>
+            <SafeAreaView style={ StyleDataPhone.full_page }>
                 <TopBar/>
                 <ScrollView 
-                    contentContainerStyle={StyleDataPhone.container} 
-                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={ StyleDataPhone.container } 
+                    showsVerticalScrollIndicator={ false }
+                    keyboardShouldPersistTaps='handled'
                 >
                     <ImageBackground
-                        source={require('../../img/backOne.png')}
-                        style={StyleDataPhone.imgBackLLarge}
-                        imageStyle={StyleDataPhone.imgBack}
+                        source={ require( '../../img/backOne.png' ) }
+                        style={ StyleDataPhone.imgBackLLarge }
+                        imageStyle={ StyleDataPhone.imgBack }
                     >
                         <Header/>
-                        <View style={[StyleDataPhone.full_page]}>
-                            <View style={[StyleDataPhone.little_spaceV]}>
-                                <ProgressBar fill={2}/> 
-                                <View style={[StyleDataPhone.row, StyleDataPhone.little_spaceV]}>
-                                    <View style={[StyleDataPhone.full_page, StyleDataPhone.fixed_center]}>
-                                        <View style={[StyleDataPhone.circle, StyleDataPhone.fixed_center]}>
-                                            <Text style={[StyleDataPhone.txt_light, StyleDataPhone.txt_letter]}>
+                        <View style={[ StyleDataPhone.full_page ]}>
+                            <View style={[ StyleDataPhone.little_spaceV ]}>
+                                <ProgressBar fill={ 2 }/> 
+                                <View style={[ StyleDataPhone.row, StyleDataPhone.little_spaceV ]}>
+                                    <View style={[ StyleDataPhone.full_page, StyleDataPhone.fixed_center ]}>
+                                        <View style={[ StyleDataPhone.circle, StyleDataPhone.fixed_center ]}>
+                                            <Text style={[ StyleDataPhone.txt_light, StyleDataPhone.txt_letter ]}>
                                                 2
                                             </Text>
                                         </View>
                                     </View>
-                                    <View style={[StyleDataPhone.fullThree_page]}>
-                                        <Text style={StyleDataPhone.txt_letter}>
-                                            <Text style={StyleDataPhone.txt_light}>
-                                                VALIDA TU {'\n'}
+                                    <View style={[ StyleDataPhone.fullThree_page ]}>
+                                        <Text style={ StyleDataPhone.txt_letter }>
+                                            <Text style={ StyleDataPhone.txt_light }>
+                                                VALIDA TU{ '\n' }
                                             </Text>                                
-                                            <Text style={StyleDataPhone.txt_blood}>
+                                            <Text style={ StyleDataPhone.txt_blood }>
                                                 CELULAR
                                             </Text>                                        
                                         </Text>
                                     </View>
                                 </View>  
-                                <View style={[StyleDataPhone.little_spaceV, StyleDataPhone.little_space]}>
-                                    <Text style={[StyleDataPhone.txt_light, StyleDataPhone.txt_normal]}>
-                                        Necesitamos validar tu número para continuar. {'\n'}{'\n'}
+                                <View style={[ StyleDataPhone.little_spaceV, StyleDataPhone.little_space ]}>
+                                    <Text style={[ StyleDataPhone.txt_light, StyleDataPhone.txt_normal ]}>
+                                        Necesitamos validar tu número para continuar.{ '\n' }{ '\n' }
                                         Ingresa tu número a 10 dígitos y te enviaremos un códigoSMS.
                                     </Text>
                                 </View>  
-                                <View style={[StyleDataPhone.little_space, StyleDataPhone.little_spaceV]}>
-                                    <View style={[StyleDataPhone.little_spaceV]}>
-                                        <Text style={[StyleDataPhone.txt_light, StyleDataPhone.txt_normal]}>
+                                <View style={[ StyleDataPhone.little_space, StyleDataPhone.little_spaceV ]}>
+                                    <View style={[ StyleDataPhone.little_spaceV ]}>
+                                        <Text style={[ StyleDataPhone.txt_light, StyleDataPhone.txt_normal ]}>
                                             Número de teléfono
                                         </Text>
                                         <Input
                                             rightIcon={{ type: 'font-awesome', name: 'lock' }}
                                             keyboardType='numeric'
                                             returnKeyType='done'
-                                            maxLength={10}
+                                            maxLength={ 10 }
                                             containerStyle={[
                                                 StyleDataPhone.inputContainerStyle,
                                                 StyleDataPhone.little_spaceV,
@@ -178,12 +168,13 @@ export default class DataPhone extends Component {
                                                     borderWidth: this.state.error_phone != '' ? 2 : 0
                                                 }
                                             ]}
-                                            inputContainerStyle={StyleDataPhone.quitBottomLine}
+                                            inputContainerStyle={ StyleDataPhone.quitBottomLine }
                                             onChangeText={
-                                                value => this.setState({ phone: value, error_phone: '' })
+                                                value => this.setState({ phone: value.replace(/[^0-9]/g, ''), error_phone: '' })
                                             }
-                                            errorStyle={StyleDataPhone.errorRed}
-                                            errorMessage={this.state.error_phone}
+                                            errorStyle={ StyleDataPhone.errorRed }
+                                            errorMessage={ this.state.error_phone }
+                                            value={ this.state.phone }
                                         />
                                     </View>
                                 </View> 
@@ -196,17 +187,17 @@ export default class DataPhone extends Component {
                                 >
                                     <Button                                        
                                         title='ENVIAR'
-                                        buttonStyle={StyleDataPhone.btn}
-                                        onPress={()=> this._checkPhone()}
-                                        disabledStyle={StyleDataPhone.disabled_btn}
-                                        disabled={this.state.phone.length < 10}
+                                        buttonStyle={ StyleDataPhone.btn }
+                                        onPress={ ()=> this._sendInfo() }
+                                        disabledStyle={ StyleDataPhone.disabled_btn }
+                                        disabled={ this.state.phone.length < 10 }
                                     />
                                 </View>
                             </View> 
-                            <View style={[StyleDataPhone.full_page, StyleDataPhone.fixed_center]}> 
+                            <View style={[ StyleDataPhone.full_page, StyleDataPhone.fixed_center ]}> 
                             <Image
-                                    source={require('../../img/phone.png')}
-                                    style={StyleDataPhone.imgTop}
+                                    source={ require( '../../img/phone.png' ) }
+                                    style={ StyleDataPhone.imgTop }
                                 />
                             </View>
                         </View>                         
@@ -220,8 +211,6 @@ export default class DataPhone extends Component {
 }
 
 
-
- 
 const StyleDataPhone = StyleSheet.create({
     container: {
         flexGrow: 1

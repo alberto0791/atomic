@@ -15,10 +15,49 @@ const Stack = createStackNavigator();
 function StackRegister() {
   return(  
     <Stack.Navigator>
-      <Stack.Screen name='Gretting' component={Gretting} />
-      <Stack.Screen name='DataAccount' component={DataAccount} />
-      <Stack.Screen name='DataPhone' component={DataPhone} />
-      <Stack.Screen name='SignSuccess' component={SignSuccess} />
+      <Stack.Screen 
+          options={{
+              headerTransparent: true,
+              headerTintColor: '#fa4d09',
+              headerStatusBarHeight: Platform.OS == 'ios' ? 20 : 0,
+              headerTitleStyle: {
+                color: 'transparent'
+              }
+          }}          
+          name='Gretting' 
+          component={ Gretting } 
+      />
+      <Stack.Screen 
+          options= {{
+              headerTransparent: true,
+              headerTintColor: '#fa4d09',
+              headerStatusBarHeight: Platform.OS == 'ios' ? 20 : 0,
+              headerTitleStyle: {
+                color: 'transparent'
+              }
+          }} 
+          name= 'DataAccount' 
+          component= { DataAccount } 
+      />
+      <Stack.Screen 
+          options= {{
+            headerTransparent: true,
+            headerTintColor: '#fa4d09',
+            headerStatusBarHeight: Platform.OS == 'ios' ? 20 : 0,
+            headerTitleStyle: {
+              color: 'transparent'
+            }
+          }} 
+          name= 'DataPhone' 
+          component= { DataPhone } 
+      />
+      <Stack.Screen 
+        options= {{
+          headerShown: false
+        }} 
+        name= 'SignSuccess' 
+        component= { SignSuccess } 
+      />
     </Stack.Navigator>
   )
 }

@@ -2,7 +2,7 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
     View,
@@ -26,8 +26,8 @@ import { TopBar } from '../../components/TopBar'
 import { ProgressBar } from '../../components/ProgressBar'
 
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height;
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
  //Class
 export default class DataAccount extends Component {
@@ -44,11 +44,11 @@ export default class DataAccount extends Component {
 
     _checkFileds = () => {
         if(this.state.name != '' && this.state.last_name != '') {
-            if(this.state.name.length < 5) {
+            if( this.state.name.length < 5 ) {
                 this.setState({
                     error_name: 'El nombre debe tener mínimo 5 caracteres'
                 })
-            }else{
+            }else {
                 this.props.navigation.navigate('DataPhone', { name: this.state.name, last_name: this.state.last_name })
             }
         }
@@ -57,71 +57,72 @@ export default class DataAccount extends Component {
 
    render() {
        return (
-            <SafeAreaView style={StyleDataAccount.full_page}>
+            <SafeAreaView style={ StyleDataAccount.full_page }>
                 <TopBar/>
                 <ScrollView 
-                    contentContainerStyle={StyleDataAccount.container} 
+                    contentContainerStyle={ StyleDataAccount.container } 
                     showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps='handled'
                 >
                     <ImageBackground
-                        source={require('../../img/backOne.png')}
-                        style={StyleDataAccount.imgBackLLarge}
-                        imageStyle={StyleDataAccount.imgBack}
+                        source={ require( '../../img/backOne.png' ) }
+                        style={ StyleDataAccount.imgBackLLarge }
+                        imageStyle={ StyleDataAccount.imgBack }
                     >
                         <Header/>
                         <View style={[ StyleDataAccount.little_spaceV ]}>
-                            <ProgressBar fill={1}/>
-                            <View style={[StyleDataAccount.row, StyleDataAccount.little_spaceV]}>
-                                <View style={[StyleDataAccount.full_page, StyleDataAccount.toLeft]}>
-                                    <View style={[StyleDataAccount.circle, StyleDataAccount.fixed_center]}>
-                                        <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_letter]}>
+                            <ProgressBar fill={ 1 }/>
+                            <View style={[ StyleDataAccount.row, StyleDataAccount.little_spaceV ]}>
+                                <View style={[ StyleDataAccount.full_page, StyleDataAccount.toLeft ]}>
+                                    <View style={[ StyleDataAccount.circle, StyleDataAccount.fixed_center ]}>
+                                        <Text style={[ StyleDataAccount.txt_light, StyleDataAccount.txt_letter ]}>
                                             1
                                         </Text>
                                     </View>
                                 </View>
-                                <View style={[StyleDataAccount.fullThree_page, StyleDataAccount.fixed_center]}>
-                                    <Text style={StyleDataAccount.txt_letter}>
-                                        <Text style={StyleDataAccount.txt_light}>
+                                <View style={[ StyleDataAccount.fullThree_page, StyleDataAccount.fixed_center ]}>
+                                    <Text style={ StyleDataAccount.txt_letter }>
+                                        <Text style={ StyleDataAccount.txt_light }>
                                             TE QUEREMOS {'\n'}
                                         </Text>                                
-                                        <Text style={StyleDataAccount.txt_blood}>
+                                        <Text style={ StyleDataAccount.txt_blood }>
                                             CONOCER
                                         </Text>                                        
                                     </Text>
                                 </View>
                             </View>
                             
-                            <View style={[StyleDataAccount.little_spaceV, StyleDataAccount.little_space]}>
-                                <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_normal]}>
+                            <View style={[ StyleDataAccount.little_spaceV, StyleDataAccount.little_space ]}>
+                                <Text style={[ StyleDataAccount.txt_light, StyleDataAccount.txt_normal ]}>
                                     Queremos saber si eres tu, por favor {'\n'} ingresa los siguintes datos:
                                 </Text>
                             </View>
                             
-                            <View style={[StyleDataAccount.little_space, StyleDataAccount.little_spaceV]}>
-                                <View style={[StyleDataAccount.little_spaceV]}>
-                                    <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_normal]}>
+                            <View style={[ StyleDataAccount.little_space, StyleDataAccount.little_spaceV ]}>
+                                <View style={[ StyleDataAccount.little_spaceV]}>
+                                    <Text style={[ StyleDataAccount.txt_light, StyleDataAccount.txt_normal ]}>
                                         Nombre(s)
                                     </Text>
                                     <Input
-                                            rightIcon={{ type: 'font-awesome', name: 'lock' }}
-                                            containerStyle={[
-                                                StyleDataAccount.inputContainerStyle,
-                                                StyleDataAccount.little_spaceV,
-                                                { 
-                                                    borderColor: 'red', 
-                                                    borderWidth: this.state.error_name != '' ? 2 : 0
-                                                }
-                                            ]}
-                                            inputContainerStyle={StyleDataAccount.quitBottomLine}
-                                            onChangeText={
-                                                value => this.setState({ name: value, error_name: '' })
+                                        rightIcon={{ type: 'font-awesome', name: 'lock' }}
+                                        containerStyle={[
+                                            StyleDataAccount.inputContainerStyle,
+                                            StyleDataAccount.little_spaceV,
+                                            { 
+                                                borderColor: 'red', 
+                                                borderWidth: this.state.error_name != '' ? 2 : 0
                                             }
-                                            errorStyle={StyleDataAccount.errorRed}
-                                            errorMessage={this.state.error_name}
-                                        />
+                                        ]}
+                                        inputContainerStyle={StyleDataAccount.quitBottomLine}
+                                        onChangeText={
+                                            value => this.setState({ name: value, error_name: '' })
+                                        }
+                                        errorStyle={ StyleDataAccount.errorRed }
+                                        errorMessage={ this.state.error_name }
+                                    />
                                 </View>
-                                <View style={[StyleDataAccount.little_spaceV]}>
-                                    <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_normal]}>
+                                <View style={[ StyleDataAccount.little_spaceV ]}>
+                                    <Text style={[ StyleDataAccount.txt_light, StyleDataAccount.txt_normal ]}>
                                         Apellidos
                                     </Text>
                                     <Input
@@ -130,12 +131,12 @@ export default class DataAccount extends Component {
                                             StyleDataAccount.inputContainerStyle, 
                                             StyleDataAccount.little_spaceV
                                         ]}
-                                        inputContainerStyle={StyleDataAccount.quitBottomLine}
+                                        inputContainerStyle={ StyleDataAccount.quitBottomLine }
                                         onChangeText={
                                             value => this.setState({ last_name: value, error_last_name: '' })
                                         }
-                                        errorStyle={StyleDataAccount.errorRed}
-                                        errorMessage={this.state.error_last_name}
+                                        errorStyle={ StyleDataAccount.errorRed }
+                                        errorMessage={ this.state.error_last_name }
                                     />
                                 </View>
                             </View>
@@ -149,17 +150,17 @@ export default class DataAccount extends Component {
                             >
                                 <Button                                        
                                     title='ENVIAR'
-                                    buttonStyle={StyleDataAccount.btn}
-                                    onPress={()=> this._checkFileds()}
-                                    disabledStyle={StyleDataAccount.disabled_btn}
-                                    disabled={this.state.name == '' || this.state.last_name == ''}
+                                    buttonStyle={ StyleDataAccount.btn }
+                                    onPress={ ()=> this._checkFileds() }
+                                    disabledStyle={ StyleDataAccount.disabled_btn }
+                                    disabled={ this.state.name == '' || this.state.last_name == '' }
                                 />
                             </View>
                         </View>
                         <View style={[ StyleDataAccount.ImageSection, StyleDataAccount.fixed_center ]}>
                             <Image
-                                source={require('../../img/account.png')}
-                                style={StyleDataAccount.imgTop}
+                                source={ require( '../../img/account.png' ) }
+                                style={ StyleDataAccount.imgTop }
                             />              
                         </View>
                     </ImageBackground>

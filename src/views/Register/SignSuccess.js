@@ -1,7 +1,7 @@
 //Libraries
 import
     React,
-    {Component}
+    { Component }
 from 'react'
 import {
     View,
@@ -20,58 +20,48 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import { TopBar } from '../../components/TopBar'
 
-//API
-
-
  //Constants
- const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height - (Platform.OS === 'ios' ? 40 : 0);
+ const WIDTH = Dimensions.get( 'window' ).width;
+ const HEIGHT = Dimensions.get( 'window' ).height;
 
  //Class
 export default class SignSuccess extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor( props ) {
+        super( props );
         this.state = { }
     }
 
-    componentDidMount(){
-
-    }
-
-
    render() {
        return (
-            <SafeAreaView style={StyleSignSuccess.full_page}>
+            <SafeAreaView style={ StyleSignSuccess.full_page }>
                 <TopBar/>
                 <ScrollView 
-                    contentContainerStyle={StyleSignSuccess.container} 
-                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={ StyleSignSuccess.container } 
+                    showsVerticalScrollIndicator={ false }
+                    keyboardShouldPersistTaps='handled'
                 >
                     <ImageBackground
-                        source={require('../../img/backOne.png')}
-                        style={{height : (HEIGHT+20) * 1}}
-                        imageStyle={{ 
-                            resizeMode:'cover', height: '100%',
-                            transform: [{ scaleX: 1.9 }, { scaleY: 1.2 }, { translateX: WIDTH * 0.2 }]
-                        }}
+                        source={ require( '../../img/backOne.png' ) }
+                        style={ StyleSignSuccess.imgBackLLarge }
+                        imageStyle={ StyleSignSuccess.imgBack }
                     >
                         <Header/>
                         <View style={[ StyleSignSuccess.topTitleSection, StyleSignSuccess.fixed_center ]}>
-                            <Text style={StyleSignSuccess.txt_title_small}>
-                                <Text style={StyleSignSuccess.txt_light}>
-                                    TUS DATOS {'\n'}
-                                    HAN SIDO{' '}
+                            <Text style={ StyleSignSuccess.txt_title_small }>
+                                <Text style={ StyleSignSuccess.txt_light }>
+                                    TUS DATOS{ '\n' }
+                                    HAN SIDO{ ' ' }
                                 </Text>                                
-                                <Text style={StyleSignSuccess.txt_blood}>
-                                    ENVIADOS {'\n'}
+                                <Text style={ StyleSignSuccess.txt_blood }>
+                                    ENVIADOS { '\n' }
                                     CON ÉXITO
                                 </Text>
                                 
                             </Text>                    
                         </View>
                         <View style={[ StyleSignSuccess.topTitleSection, StyleSignSuccess.fixed_center, StyleSignSuccess.little_space ]}>
-                            <Text style={[StyleSignSuccess.txt_light, StyleSignSuccess.txt_normal]}>
+                            <Text style={[ StyleSignSuccess.txt_light, StyleSignSuccess.txt_normal ]}>
                                 En breve recibirás un correo de confirmación por parte del equipo de AtomicLabs. {'\n'}{'\n'}
                                 Recuerda revisar tu bandeja de SPAM{'\n'}
                                 ¡Esperamos verte pronto!
@@ -79,8 +69,8 @@ export default class SignSuccess extends Component {
                         </View>
                         <View style={[ StyleSignSuccess.ImageSection, StyleSignSuccess.fixed_center ]}>
                             <Image
-                                source={require('../../img/signsuccess.png')}
-                                style={StyleSignSuccess.imgTop}
+                                source={ require( '../../img/signsuccess.png' ) }
+                                style={ StyleSignSuccess.imgTop }
                             />              
                         </View>
                     </ImageBackground>
@@ -93,8 +83,6 @@ export default class SignSuccess extends Component {
 }
 
 
-
- 
 const StyleSignSuccess = StyleSheet.create({
     container: {
         flexGrow: 1
@@ -133,6 +121,18 @@ const StyleSignSuccess = StyleSheet.create({
     imgTop: {
         resizeMode: 'contain',
         height: '95%'
-    }
+    },
+    imgBackLLarge: {
+        height : HEIGHT * 1
+    },
+    imgBack: {
+        resizeMode:'cover', 
+        height: '100%',
+        transform: [
+            { scaleX: 1.9 }, 
+            { scaleY: 1.2 }, 
+            { translateX: WIDTH * 0.2 }
+        ]
+    },
 })
 
