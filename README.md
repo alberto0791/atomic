@@ -1,4 +1,4 @@
-# atomic
+# Atomic
 Atomic Labs challenge
 
 # Pre-install
