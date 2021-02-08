@@ -7,7 +7,6 @@ import {
     View,
     Dimensions,
     StyleSheet,
-    Platform,
     Image
 } from 'react-native'
 
@@ -47,9 +46,6 @@ export default class Header extends Component {
 const StyleHeader = StyleSheet.create({
     container: {
         height: HEIGHT * 0.1
-    },
-    iOS_statusBar: {
-        marginTop: Platform.OS == 'ios' ? 20 : 0
     },
     fixed_center:{
         alignItems: 'center',
