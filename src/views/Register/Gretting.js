@@ -24,7 +24,7 @@ import GrettingTutorial from './GrettingSections/GrettingTutorial'
 import GrettingPeople from './GrettingSections/GrettingPeople'
 
 //API
-import { peopleTeam } from '../../serivces/api'
+import { peopleTeam } from '../../services/api'
 
 //Utils
 import { renderIf } from '../../utils/Functions';

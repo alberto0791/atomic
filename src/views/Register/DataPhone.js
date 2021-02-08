@@ -20,7 +20,7 @@ import NetInfo from "@react-native-community/netinfo";
 import { CommonActions } from '@react-navigation/native';
 
 //API
-import { sendTest } from '../../serivces/api'
+import { sendTest } from '../../services/api'
 
 //Utils
 import Footer from '../../components/Footer'
