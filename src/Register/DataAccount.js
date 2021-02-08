@@ -12,8 +12,10 @@ import {
     Platform,
     ImageBackground,
     Text,
-    Image
+    Image,
+    SafeAreaView
 } from 'react-native'
+import { Input, Button } from 'react-native-elements'
 
 //Utils
 import Footer from '../../components/Footer'
@@ -22,27 +24,47 @@ import { TopBar } from '../../components/TopBar'
 
 //API
 
+//Components
+import { ProgressBar } from '../../components/ProgressBar'
+
 
  //Constants
  const WIDTH = Dimensions.get('window').width;
- const HEIGHT = Dimensions.get('window').height - (Platform.OS === 'ios' ? 40 : 0);
+ const HEIGHT = Dimensions.get('window').height;
 
  //Class
 export default class DataAccount extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { }
+        this.state = { 
+            step: 1,
+            name: '',
+            last_name: '',
+            error_name: ''
+        }
     }
 
     componentDidMount(){
 
     }
 
+    _checkFileds = () => {
+        if(this.state.name != '' && this.state.last_name != '') {
+            if(this.state.name.length < 5) {
+                this.setState({
+                    error_name: 'El nombre debe tener mínimo 5 caracteres'
+                })
+            }else{
+                this.props.navigation.navigate('DataPhone', { name: this.state.name, last_name: this.state.last_name })
+            }
+        }
+    }
+
 
    render() {
        return (
-            <View style={StyleDataAccount.container}>
+            <SafeAreaView style={StyleDataAccount.full_page}>
                 <TopBar/>
                 <ScrollView 
                     contentContainerStyle={StyleDataAccount.container} 
@@ -54,8 +76,92 @@ export default class DataAccount extends Component {
                         imageStyle={StyleDataAccount.imgBack}
                     >
                         <Header/>
-                        <View style={[ StyleDataAccount.topTitleSection, StyleDataAccount.fixed_center ]}>
-                                         
+                        <View style={[ StyleDataAccount.topTitleSection ]}>
+                            <ProgressBar fill={1}/>
+                            <View style={[StyleDataAccount.row, StyleDataAccount.little_spaceV]}>
+                                <View style={[{width: WIDTH * 0.2}, StyleDataAccount.toLeft]}>
+                                    <View style={[StyleDataAccount.circle, StyleDataAccount.fixed_center]}>
+                                        <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_letter]}>
+                                            1
+                                        </Text>
+                                    </View>
+                                </View>
+                                <View style={[{width: WIDTH * 0.7}, StyleDataAccount.fixed_center]}>
+                                    <Text style={StyleDataAccount.txt_letter}>
+                                        <Text style={StyleDataAccount.txt_light}>
+                                            TE QUEREMOS {'\n'}
+                                        </Text>                                
+                                        <Text style={StyleDataAccount.txt_blood}>
+                                            CONOCER
+                                        </Text>                                        
+                                    </Text>
+                                </View>
+                            </View>
+                            
+                            <View style={[StyleDataAccount.little_spaceV, StyleDataAccount.little_space]}>
+                                <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_normal]}>
+                                    Queremos saber si eres tu, por favor {'\n'} ingresa los siguintes datos:
+                                </Text>
+                            </View>
+                            
+                            <View style={[StyleDataAccount.little_space, StyleDataAccount.little_spaceV]}>
+                                <View style={[StyleDataAccount.little_spaceV]}>
+                                    <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_normal]}>
+                                        Nombre(s)
+                                    </Text>
+                                    <Input
+                                            rightIcon={{ type: 'font-awesome', name: 'lock' }}
+                                            containerStyle={[
+                                                StyleDataAccount.inputContainerStyle,
+                                                StyleDataAccount.little_spaceV,
+                                                { 
+                                                    borderColor: 'red', 
+                                                    borderWidth: this.state.error_name != '' ? 2 : 0
+                                                }
+                                            ]}
+                                            inputContainerStyle={StyleDataAccount.quitBottomLine}
+                                            onChangeText={
+                                                value => this.setState({ name: value, error_name: '' })
+                                            }
+                                            errorStyle={StyleDataAccount.errorRed}
+                                            errorMessage={this.state.error_name}
+                                        />
+                                </View>
+                                <View style={[StyleDataAccount.little_spaceV]}>
+                                    <Text style={[StyleDataAccount.txt_light, StyleDataAccount.txt_normal]}>
+                                        Apellidos
+                                    </Text>
+                                    <Input
+                                        rightIcon={{ type: 'font-awesome', name: 'lock' }}
+                                        containerStyle={[
+                                            StyleDataAccount.inputContainerStyle, 
+                                            StyleDataAccount.little_spaceV
+                                        ]}
+                                        inputContainerStyle={StyleDataAccount.quitBottomLine}
+                                        onChangeText={
+                                            value => this.setState({ last_name: value, error_last_name: '' })
+                                        }
+                                        errorStyle={StyleDataAccount.errorRed}
+                                        errorMessage={this.state.error_last_name}
+                                    />
+                                </View>
+                            </View>
+
+                            <View 
+                                style={[
+                                    StyleDataAccount.little_space, 
+                                    StyleDataAccount.little_spaceV, 
+                                    StyleDataAccount.fixed_center
+                                ]}
+                            >
+                                <Button                                        
+                                    title='ENVIAR'
+                                    buttonStyle={StyleDataAccount.btn}
+                                    onPress={()=> this._checkFileds()}
+                                    disabledStyle={StyleDataAccount.disabled_btn}
+                                    disabled={this.state.name == '' && this.state.last_name == ''}
+                                />
+                            </View>
                         </View>
                         <View style={[ StyleDataAccount.ImageSection, StyleDataAccount.fixed_center ]}>
                             <Image
@@ -66,7 +172,7 @@ export default class DataAccount extends Component {
                     </ImageBackground>
                     <Footer/>
                 </ScrollView>
-           </View>
+           </SafeAreaView>
        );
 
    }
@@ -80,18 +186,25 @@ const StyleDataAccount = StyleSheet.create({
         flexGrow: 1
     },
     little_space: {
-        paddingHorizontal: WIDTH * 0.025
+        marginHorizontal: WIDTH * 0.025
+    },
+    little_spaceV: {
+        marginVertical: WIDTH * 0.025
     },
     full_page:{
-        flex: 1,
-        backgroundColor: '#000'
+        flex: 1
+    },
+    fullTwo_page:{
+        flex: 2
+    },
+    fullThree_page:{
+        flex: 3
     },
     txt_normal: {
-        fontSize: 16
+        fontSize: HEIGHT * 0.025
     },
-    txt_title_small: {
-        fontSize: WIDTH * 0.075,
-        textAlign: 'center',
+    txt_letter: {
+        fontSize: WIDTH * 0.07,
         fontWeight: Platform.OS === 'ios' ? '700' : 'bold'
     },
     txt_light: {
@@ -127,6 +240,52 @@ const StyleDataAccount = StyleSheet.create({
     imgBackLLarge: {
         height : HEIGHT * 1.5
     },
+
+    //Number
+    circle: {
+        width: HEIGHT * 0.05, 
+        height: HEIGHT * 0.05, 
+        borderWidth: 2, 
+        borderRadius: HEIGHT * 0.05,
+        borderColor:'#fa4d09',
+        backgroundColor:'#fa4d09'
+    },
+    row: {
+        flexDirection: 'row'
+    },
+    toLeft: {
+        alignItems: 'flex-end',
+        justifyContent: 'center'
+    },
+
+
+    //Input
+    inputContainerStyle: {
+        backgroundColor: '#fff', 
+        height: 50, 
+        borderRadius: 10 
+    },
+    quitBottomLine: {
+        borderBottomWidth: 0
+    },
+    errorRed: {
+        color: 'red'
+    },
+
+    //Button
+    btn:{
+        width: WIDTH * 0.5, 
+        backgroundColor: '#fa4d09', 
+        height: 50, 
+        borderRadius: 25
+    },
+    disabled_btn: {
+        width: WIDTH * 0.5, 
+        backgroundColor: 'rgba(250, 77, 9, 0.5)', 
+        height: 50, 
+        borderRadius: 25
+    }
+
 })
 
 
