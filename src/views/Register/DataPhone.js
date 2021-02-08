@@ -70,13 +70,13 @@ export default class DataPhone extends Component {
                     this.setState({ attempts: 0 })
                     this.props.navigation.navigate( 'SignSuccess' );
                 }else{
-                    if( this.state.attempts == 3 ) {                        
+                    if( this.state.attempts == 3 ) {                      
                         Alert.alert(
                             "LO SENTIMOS",
                             "No se ha logrado la comunicación con el servidor, te invitamos a intentarlo mas tarde.",
                             [
                                 { 
-                                    text: "VOLVER A INTENTARLO",
+                                    text: "ACEPTAR",
                                     onPress: ()=> this.props.navigation.dispatch(
                                         CommonActions.reset({
                                           index: 1,
@@ -86,25 +86,10 @@ export default class DataPhone extends Component {
                                         })
                                     )
                                 }
-                            ],
-                            { 
-                                cancelable: false 
-                            }
+                            ]
                         );
                     }else {
-                        this.setState({ attempts: 0 })
-                        Alert.alert(
-                            "LO SENTIMOS",
-                            "No se ha logrado la comunicación con el servidor",
-                            [
-                                { 
-                                    text: "VOLVER A INTENTARLO"
-                                }
-                            ],
-                            { 
-                                cancelable: false 
-                            }
-                        );
+                        this._sendInfo();
                     }
                 }
             })
