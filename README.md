@@ -13,5 +13,6 @@ Atomic Labs challenge
 - Run "expo-start" to init server
 
 # Show-app
-- Download expo App in ANDROID or iOS device
+- Download Expo App in ANDROID or iOS device
+- Open Expo App
 - Scan QR showed in console after to run "expo-start"
